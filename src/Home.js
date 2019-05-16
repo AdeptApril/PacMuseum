@@ -39,6 +39,7 @@ class Home extends Component {
 
             this.setState({
                 activeItem,
+                currentPage: activeItem.toString(),
                 activeItemPosition: document.getElementById(activeItem).offsetLeft,
                 activeItemColor: window.getComputedStyle(document.getElementById(activeItem)).getPropertyValue('background-color'),
             })
@@ -99,6 +100,7 @@ class Home extends Component {
                     <div className="further-info">
                         <div>
                             {/*{this.state.currSubDiv}*/}
+                            The current page is: {this.state.currentPage}
                         </div>
                     </div>
                 </div>
