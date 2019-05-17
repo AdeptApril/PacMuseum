@@ -33,6 +33,18 @@ class Home extends Component {
         this.handleClick = this.handleClick.bind(this)
     }
 
+    componentDidMount() {
+            this.interval = setInterval(() => {
+                this.setState({
+                    pic: setNextBackground(this),
+                })
+            }, 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     handleClick(activeItem) {
         return e => {
             e.preventDefault()
@@ -119,6 +131,46 @@ function MenuItem(props) {
             { props.item.text }
         </div>
     )
+}
+
+//Advance to next picture in structure, going back to the beginning if at the end
+//TODO: There _has_ to be a better way to do this.
+function setNextBackground(props) {
+    switch(props.pic) {
+        case pics.rug:
+            props.pic = pics.righttop;
+            break;
+        case pics.righttop:
+            props.pic = pics.keychainshelf;
+            break;
+        case pics.keychainshelf:
+            props.pic = pics.leftbottom;
+            break;
+        case pics.leftbottom:
+            props.pic = pics.leftside;
+            break;
+        case pics.leftside:
+            props.pic = pics.lefttop;
+            break;
+        case pics.lefttop:
+            props.pic = pics.rightbottom;
+            break;
+        case pics.rightbottom:
+            props.pic= pics.other;
+            break;
+        case pics.other:
+            props.pic = pics.middlebottom;
+            break;
+        case pics.middlebottom:
+            props.pic = pics.middletop;
+            break;
+        case pics.middletop:
+            props.pic = pics.rug;
+            break;
+        default:
+            props.pic = pics.rug;
+    }
+            return props.pic;
 }
 
 
