@@ -19,6 +19,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.handlePictureChange = this.handlePictureChange.bind(this);
+        //const picsArr =[pics.keychainshelf, pics.leftbottom, pics.leftside, pics.lefttop, pics.middlebottom, pics.middletop, pics.other, pics.rightbottom, pics.righttop, pics.rug];
 
         this.state = {
             pic: pics.rug, //The links to the various included pictures
@@ -47,7 +48,7 @@ class Home extends Component {
 
     handleClick(activeItem) {
         return e => {
-            e.preventDefault()
+            e.preventDefault();
 
             this.setState({
                 activeItem,
@@ -135,6 +136,8 @@ function MenuItem(props) {
 
 //Advance to next picture in structure, going back to the beginning if at the end
 //TODO: There _has_ to be a better way to do this.
+//I tried using a picNum variable in state, along with an array of the pics, but the variables became undefined immediately
+//So reverting to this (working) version.
 function setNextBackground(props) {
     switch(props.pic) {
         case pics.rug:
